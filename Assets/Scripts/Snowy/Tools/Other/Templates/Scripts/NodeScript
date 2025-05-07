@@ -1,0 +1,11 @@
+﻿using System;
+using Snowy.NodeBased;
+
+namespace #NAMESPACE#
+{
+    [Serializable]
+    public class #SCRIPTNAME# : Node<#SCRIPTNAME#>
+    {
+
+    }
+}

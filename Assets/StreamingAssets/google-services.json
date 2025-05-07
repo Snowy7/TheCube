@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "739370127068",
+    "project_id": "thecube-699e9",
+    "storage_bucket": "thecube-699e9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739370127068:android:cd2ae1a4d9ac4eb146ae19",
+        "android_client_info": {
+          "package_name": "com.limeless.thecube"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4E9ypOJLpMNq22ecVSMBeYXrujJ3dbxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739370127068:android:0443165dfff4bc8c46ae19",
+        "android_client_info": {
+          "package_name": "limeless.thecube"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4E9ypOJLpMNq22ecVSMBeYXrujJ3dbxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

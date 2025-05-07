@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ca84e725c7c764aa5ed097918d14b7, type: 3}
+  m_Name: ftLocalStorage
+  m_EditorClassIdentifier: 
+  modifiedAssetPathList:
+  - Assets/Bakery/examples/content/sponza/sponza.FBX
+  - Assets/Plugins/Low Poly/Cyberpunk Interior/Models/Module/Fence_11_Middle.FBX
+  - Assets/Plugins/Low Poly/Cyberpunk Interior/Models/Module/Fence_11_Edge.FBX
+  - Assets/Plugins/Low Poly/Cyberpunk Interior/Models/Module/Wall_50_Door_B.fbx
+  - Assets/Plugins/Low Poly/Cyberpunk Interior/Models/Text/Alphabet/Alphabet_3D_01_S.FBX
+  - Assets/Plugins/Low Poly/Cyberpunk Interior/Models/Text/Alphabet/Alphabet_3D_01_O.FBX
+  - Assets/Plugins/Low Poly/Cyberpunk Interior/Models/Text/Alphabet/Alphabet_3D_01_R.FBX
+  - Assets/Plugins/Low Poly/Cyberpunk Interior/Models/Pillar_06.FBX
+  - Assets/Models/Hub/HubBlockout.fbx
+  modifiedAssetPaddingHash: d6a958ff343fd3d9a48f1ac2383fd3d9fd7d9363cedb894b04c5d8901f901ac280610e2c

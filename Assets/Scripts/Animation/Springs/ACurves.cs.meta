@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 644f9d3a51810624bb586ef98039b614
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 54947
+  packageName: Low Poly Shooter Pack v4.3
+  packageVersion: 4.3.1
+  assetPath: Assets/Infima Games/Tools/Animation/Springs/ACurves.cs
+  uploadId: 556432

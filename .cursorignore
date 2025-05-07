@@ -1,0 +1,28 @@
+# Add directories or file patterns to ignore during indexing (e.g. foo/ or *.csv)
+
+node_modules/
+.git/
+.gitignore
+.cursorignore
+.cursorrules
+.cursorconfig
+
+# Unit test files
+*.test.ts
+*.test.tsx
+*.test.js
+*.test.jsx
+
+# Unity Editor files
+*.meta
+*.unitypackage
+*.unitypackage.meta
+*.unitypackage.meta.meta
+*.unitypackage.meta.meta.meta
+*.unitypackage.meta.meta.meta.meta
+
+# Unity folder
+Logs/
+Library/
+etc/
+Temp/

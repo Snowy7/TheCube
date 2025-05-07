@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: ca84a7c15d785414398dcdcd01e50fa7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 54947
+  packageName: Low Poly Shooter Pack v4.3
+  packageVersion: 4.3.1
+  assetPath: Assets/Infima Games/Tools/Animation/Springs/Spring.cs
+  uploadId: 556432

@@ -1,0 +1,11 @@
+﻿using Snowy.NodeBased;
+using UnityEngine; 
+
+namespace #NAMESPACE#
+{ 
+    [CreateAssetMenu(menuName = nameof(Snowy) + "/Graph/" + nameof(#SCRIPTNAME#), fileName = nameof(#SCRIPTNAME#))]
+    public class #SCRIPTNAME# : Graph</*your node type*/> 
+    {
+
+    }
+}
