@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TP AR 01
+  m_Controller: {fileID: 9100000, guid: 561adb8e83fcd8e45abde8827add4df9, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: -623603649343465320, guid: fb0ce93c68c4e434dbbf7829776bf298, type: 3}
+    m_OverrideClip: {fileID: -623603649343465320, guid: 13e118aa43cd78b4e9a38c2797f0c2ff, type: 3}
+  - m_OriginalClip: {fileID: -623603649343465320, guid: 78ca97fbf4035ef48b7de7a20aa16690, type: 3}
+    m_OverrideClip: {fileID: -623603649343465320, guid: 875fcde83c25b3f4fbceea438dd017c7, type: 3}

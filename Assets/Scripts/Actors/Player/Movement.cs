@@ -8,7 +8,6 @@ namespace Actors.Player
 {
     public class Movement : NetworkBehaviour
     {
-        
         #region FIELDS SERIALIZED
         
         [Header("Acceleration")]
@@ -104,6 +103,28 @@ namespace Actors.Player
         [SerializeField, ShowIf(nameof(canCrouch), true)]
         private LayerMask crouchOverlapsMask;
 
+        [Header("Sliding")]
+        
+        [Tooltip("Whether sliding is enabled.")]
+        [SerializeField]
+        private bool canSlide = true;
+
+        [Tooltip("How fast the player moves while sliding.")]
+        [SerializeField]
+        private float speedSliding = 8.0f;
+
+        [Tooltip("How quickly sliding speed decreases.")]
+        [SerializeField]
+        private float slidingDeceleration = 2.5f;
+
+        [Tooltip("Minimum duration of a slide in seconds.")]
+        [SerializeField]
+        private float minSlideTime = 0.5f;
+
+        [Tooltip("Maximum duration of a slide in seconds.")]
+        [SerializeField]
+        private float maxSlideTime = 1.5f;
+
         [Header("Rigidbody Push")]
 
         [Tooltip("Force applied to other rigidbodies when walking into them. This force is multiplied by the character's " +
@@ -124,6 +145,7 @@ namespace Actors.Player
         /// Player Character.
         /// </summary>
         private FPSCharacter playerCharacter;
+        
         /// <summary>
         /// The player character's equipped weapon.
         /// </summary>
@@ -137,12 +159,13 @@ namespace Actors.Player
         /// <summary>
         /// Velocity.
         /// </summary>
-        [SyncVar] Vector3 velocity;
+        [SyncVar] private Vector3 velocity;
 
         /// <summary>
         /// Is the character on the ground.
         /// </summary>
-        [SyncVar] bool isGrounded;
+        [SyncVar] private bool isGrounded;
+        
         /// <summary>
         /// Was the character standing on the ground last frame.
         /// </summary>
@@ -152,10 +175,31 @@ namespace Actors.Player
         /// Is the character jumping?
         /// </summary>
         private bool jumping;
+        
         /// <summary>
         /// If true, the character controller is crouched.
         /// </summary>
-        private bool crouching;
+        [SyncVar] private bool crouching;
+
+        /// <summary>
+        /// Is the character sliding?
+        /// </summary>
+        [SyncVar] private bool sliding;
+
+        /// <summary>
+        /// Current sliding speed.
+        /// </summary>
+        private float currentSlideSpeed;
+
+        /// <summary>
+        /// Direction of the slide.
+        /// </summary>
+        private Vector3 slideDirection;
+
+        /// <summary>
+        /// Time when sliding started.
+        /// </summary>
+        private float slideStartTime;
 
         /// <summary>
         /// Stores the Time.time value when the character last jumped.
@@ -168,6 +212,8 @@ namespace Actors.Player
         
         public event Action OnJump;
         public event Action OnLand;
+        public event Action OnSlideStart;
+        public event Action OnSlideEnd;
         
         #endregion
 
@@ -176,26 +222,26 @@ namespace Actors.Player
         /// <summary>
         /// Awake.
         /// </summary>
-        protected  void Awake()
+        protected void Awake()
         {
             //Get Player Character.
             playerCharacter = GetComponentInParent<FPSCharacter>();
             //Cache the controller.
             controller = GetComponent<CharacterController>();
         }
+        
         /// Initializes the FpsController on start.
-        protected  void Start()
+        protected void Start()
         {
             //Save the default height.
             standingHeight = controller.height;
         }
         
         /// Moves the camera to the character, processes jumping and plays sounds every frame.
-        protected  void Update()
+        protected void Update()
         {
             if (isOwned)
             {
-
                 //Get the equipped weapon!
                 equippedWeapon = playerCharacter.GetInventory().GetEquipped();
 
@@ -225,6 +271,7 @@ namespace Actors.Player
             //Save the grounded value to check for difference next frame.
             wasGrounded = isGrounded;
         }
+        
         /// <summary>
         /// OnControllerColliderHit.
         /// </summary>
@@ -253,6 +300,13 @@ namespace Actors.Player
         /// </summary>
         private void MoveCharacter()
         {
+            // If we're sliding, handle slide movement
+            if (sliding)
+            {
+                HandleSlideMovement();
+                return;
+            }
+            
             //Get Movement Input!
             Vector2 frameInput = Vector3.ClampMagnitude(playerCharacter.GetInputMovement(), 1.0f);
             //Calculate local-space direction by using the player's input.
@@ -320,18 +374,55 @@ namespace Actors.Player
         }
 
         /// <summary>
+        /// Handles movement while sliding.
+        /// </summary>
+        private void HandleSlideMovement()
+        {
+            // Decrease slide speed over time
+            currentSlideSpeed = Mathf.Max(0, currentSlideSpeed - slidingDeceleration * Time.deltaTime);
+            
+            // Apply slide movement
+            Vector3 slideVelocity = slideDirection * currentSlideSpeed;
+            
+            // Apply gravity
+            slideVelocity.y = velocity.y;
+            if (!isGrounded)
+            {
+                slideVelocity.y -= gravity * Time.deltaTime;
+            }
+            
+            // Update velocity
+            velocity = slideVelocity;
+            
+            // Apply movement
+            Vector3 applied = velocity * Time.deltaTime;
+            if (controller.isGrounded && !jumping)
+                applied.y = -stickToGroundForce;
+                
+            // Move
+            controller.Move(applied);
+            
+            // End slide if we've slowed down too much or exceeded max time
+            if (currentSlideSpeed <= 0.1f || Time.time - slideStartTime >= maxSlideTime)
+            {
+                EndSlide();
+            }
+        }
+
+        /// <summary>
         /// WasGrounded.
         /// </summary>
-        public  bool WasGrounded() => wasGrounded;
+        public bool WasGrounded() => wasGrounded;
+        
         /// <summary>
         /// IsJumping.
         /// </summary>
-        public  bool IsJumping() => jumping;
+        public bool IsJumping() => jumping;
 
         /// <summary>
         /// Can Crouch.
         /// </summary>
-        public  bool CanCrouch(bool newCrouching)
+        public bool CanCrouch(bool newCrouching)
         {
             //Always block crouching if we need to.
             if (canCrouch == false)
@@ -358,10 +449,22 @@ namespace Actors.Player
         public bool IsCrouching() => crouching;
 
         /// <summary>
+        /// IsSliding.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsSliding() => sliding;
+
+        /// <summary>
         /// Jump.
         /// </summary>
         public void Jump()
         {
+            // If we're sliding, end the slide first
+            if (sliding)
+            {
+                EndSlide();
+            }
+            
             //We can ignore this if we're crouching and we're not allowed to do crouch-jumps.
             if (crouching && !canJumpWhileCrouching)
                 return;
@@ -397,8 +500,76 @@ namespace Actors.Player
             controller.center = controller.height / 2.0f * Vector3.up;
         }
 
+        /// <summary>
+        /// Attempts to start sliding if conditions are met.
+        /// </summary>
+        public void TrySlide()
+        {
+            // Can't slide if it's disabled or already sliding
+            if (!canSlide || sliding)
+                return;
+                
+            // Can only slide when running and grounded
+            if (!playerCharacter.IsRunning() || !isGrounded)
+                return;
+                
+            // Start sliding
+            StartSlide();
+        }
+
+        /// <summary>
+        /// Starts the sliding state.
+        /// </summary>
+        private void StartSlide()
+        {
+            sliding = true;
+            
+            // Cache the direction we're moving in
+            slideDirection = transform.forward;
+            
+            // Set initial slide speed based on current velocity
+            currentSlideSpeed = speedSliding;
+            
+            // Force crouch
+            Crouch(true);
+            
+            // Record start time
+            slideStartTime = Time.time;
+            
+            // Notify any listeners
+            OnSlideStart?.Invoke();
+        }
+
+        /// <summary>
+        /// Ends the sliding state.
+        /// </summary>
+        public void EndSlide()
+        {
+            if (!sliding)
+                return;
+                
+            sliding = false;
+            
+            // Try to stand up if we've been sliding long enough
+            if (Time.time - slideStartTime >= minSlideTime)
+            {
+                StartCoroutine(nameof(TryUncrouch));
+            }
+            
+            // Notify any listeners
+            OnSlideEnd?.Invoke();
+        }
+
         public void TryCrouch(bool value)
         {
+            // if trying to crouch while running, do slide instead
+            if (value && playerCharacter.IsRunning() && crouching == false)
+            {
+                // Start sliding
+                TrySlide();
+                return;
+            }
+            
             //Crouch.
             if (value && CanCrouch(true))
                 Crouch(true);
@@ -411,6 +582,7 @@ namespace Actors.Player
         /// Try Toggle Crouch.
         /// </summary>
         public void TryToggleCrouch() => TryCrouch(!crouching);
+        
         /// <summary>
         /// Tries to un-crouch the character.
         /// </summary>
@@ -431,29 +603,32 @@ namespace Actors.Player
         /// <summary>
         /// GetLastJumpTime.
         /// </summary>
-        public  float GetLastJumpTime() => lastJumpTime;
+        public float GetLastJumpTime() => lastJumpTime;
 
         /// <summary>
         /// Get Multiplier Forward.
         /// </summary>
-        public  float GetMultiplierForward() => walkingMultiplierForward;
+        public float GetMultiplierForward() => walkingMultiplierForward;
+        
         /// <summary>
         /// Get Multiplier Sideways.
         /// </summary>
-        public  float GetMultiplierSideways() => walkingMultiplierSideways;
+        public float GetMultiplierSideways() => walkingMultiplierSideways;
+        
         /// <summary>
         /// Get Multiplier Backwards.
         /// </summary>
-        public  float GetMultiplierBackwards() => walkingMultiplierBackwards;
+        public float GetMultiplierBackwards() => walkingMultiplierBackwards;
         
         /// <summary>
         /// Returns the value of Velocity.
         /// </summary>
-        public  Vector3 GetVelocity() => new Vector3(velocity.x, 0.0f, velocity.z);
+        public Vector3 GetVelocity() => new Vector3(velocity.x, 0.0f, velocity.z);
+        
         /// <summary>
         /// Returns the value of Grounded.
         /// </summary>
-        public  bool IsGrounded() => isGrounded;
+        public bool IsGrounded() => isGrounded;
 
         #endregion
         

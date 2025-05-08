@@ -242,7 +242,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 4.3669004, y: 0}
-  m_SizeDelta: {x: -55.266197, y: 0}
+  m_SizeDelta: {x: -46.5324, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5873081021148566693
 CanvasRenderer:
@@ -272,10 +272,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Invite to team
+  m_text: VIEW STEAM PROFILE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cee79cb2887e4474d8d9d3d6f6f027ba, type: 2}
-  m_sharedMaterial: {fileID: 1833488630881313519, guid: cee79cb2887e4474d8d9d3d6f6f027ba, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -299,8 +299,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
-  m_fontSizeBase: 36
+  m_fontSize: 18
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18

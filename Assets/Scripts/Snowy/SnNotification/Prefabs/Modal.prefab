@@ -145,7 +145,7 @@ MonoBehaviour:
 
     <color="grey">Offline</color>'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cee79cb2887e4474d8d9d3d6f6f027ba, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 1833488630881313519, guid: cee79cb2887e4474d8d9d3d6f6f027ba, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 706d513829c96704c882b6965d2d3b82, type: 2}
+  m_Material: {fileID: 2100000, guid: f6d46f1e916b3486c90a448a441fac6a, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -620,7 +620,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Player Details
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: cee79cb2887e4474d8d9d3d6f6f027ba, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 1833488630881313519, guid: cee79cb2887e4474d8d9d3d6f6f027ba, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

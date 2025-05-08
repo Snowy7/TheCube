@@ -570,7 +570,7 @@ namespace Inventory
                 projectile.Init(characterBehaviour.netId, damage, projectileImpulse, force, 3f, canDamage);
                 
                 // play the firing sound
-                if (AudioManager.Instance) AudioManager.Instance.PlayAudio(muzzleBehaviour.GetAudioClipFire(), 1f, audioSource, AudioType.Sfx);
+                if (AudioManager.Instance) AudioManager.Instance.PlayAudio(muzzleBehaviour.GetAudioClipFire(), 0.15f, audioSource, AudioType.Sfx);
                 if (EnemyManager.Instance && characterBehaviour.isServer) EnemyManager.Instance.AlertNearbyEnemies(socket.position, 10f);
                 
                 // Draw alert debug sphere

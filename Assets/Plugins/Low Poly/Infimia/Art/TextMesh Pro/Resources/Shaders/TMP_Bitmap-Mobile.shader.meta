@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 33eec0e2ffa60a84dbbbb390c8196f37
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 54947
+  packageName: Low Poly Shooter Pack v4.3
+  packageVersion: 4.3.1
+  assetPath: Assets/Infima Games/Low Poly Shooter Pack/Art/TextMesh Pro/Resources/Shaders/TMP_Bitmap-Mobile.shader
+  uploadId: 556432

@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5616433073739409590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +190,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3668149293562814532, guid: 89d3c71f058ee674a8ee9b655349cdbf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 3668149293562814532, guid: 89d3c71f058ee674a8ee9b655349cdbf, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5760527743660800003, guid: 89d3c71f058ee674a8ee9b655349cdbf, type: 3}
       propertyPath: m_Name
       value: Modal
@@ -198,6 +206,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.37934875
       objectReference: {fileID: 0}
+    - target: {fileID: 7861743778416433586, guid: 89d3c71f058ee674a8ee9b655349cdbf, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 7861743778416433586, guid: 89d3c71f058ee674a8ee9b655349cdbf, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 8643524261961709144, guid: 89d3c71f058ee674a8ee9b655349cdbf, type: 3}
       propertyPath: m_CullTransparentMesh
       value: 1

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4248bea64f0a21c409fb8b14c1c15708
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 54947
+  packageName: Low Poly Shooter Pack v4.3
+  packageVersion: 4.3.1
+  assetPath: Assets/Infima Games/Low Poly Shooter Pack/Art/TextMesh Pro/Resources/Shaders/TMPro_Surface.cginc
+  uploadId: 556432

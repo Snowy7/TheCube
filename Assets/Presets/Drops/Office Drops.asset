@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09aca8f888caff64592b3968e10334b2, type: 3}
+  m_Name: Office Drops
+  m_EditorClassIdentifier: 
+  dropItems:
+  - DropObj: {fileID: 3250694554183897947, guid: fdb48bc81af8c054bbb7daf79a951766, type: 3}
+    DropPercentage: 60
+  - DropObj: {fileID: 8264510100899367263, guid: 545c6490843908643a3fd7905ed9061c, type: 3}
+    DropPercentage: 90
